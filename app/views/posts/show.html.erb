@@ -1,0 +1,61 @@
+<%= render "shared/header" %>
+<!-- Page Content -->
+<div class="container">
+    <div class="row">
+        <!-- Blog Post Content Column -->
+        <div class="col-lg-8">
+            <!-- Blog Post -->
+            <br><br>
+            <!-- Title -->
+            <h1><%= link_to @post.title, post_path(@post) %></h1>
+            <!-- Author -->
+            <p class="lead">
+                by <a href="#"><%= @post.user.name %></a>
+            </p>
+            <%= social_share_button_tag(@post.title) %>
+            <!-- Date/Time -->
+            <p><span class="glyphicon glyphicon-time"></span> Posted on <%= @post.created_at %></p>
+            <!-- Preview Image -->
+            <img class="img-responsive" src="<%= Settings.posts.post_nil %>" alt="">
+            <!-- Post Content -->
+            <p class="lead"><%= @post.content %></p>
+            <hr>
+
+            <div class="well">
+                <h4>Leave a Comment:</h4>
+
+                <%= form_for(@comment, remote: true) do |f| %>
+                  <div class="form-group">
+                    <%= f.text_area :content, class: 'form-control', rows: 3 %>
+                    <%= f.hidden_field :post_id, value: @post.id %>
+                    <%= f.submit "Submit", class: 'btn btn-primary' %>
+                  </div>
+                <% end %>
+            </div>
+            <hr>
+            <% if @post.comments.present? %>
+              <% @post.comments.each do |comment| %>
+                <!-- Comment -->
+                <div class="media">
+                    <a class="pull-left" href="#">
+                        <img class="media-object" src="<%= comment.user.avatar.present? ? comment.user.avatar : Settings.users.avatar_nil %>" alt="">
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading"><%= comment.user.name %>
+                            <small><%= time_ago_in_words(comment.created_at) %></small>
+                        </h4>
+                        <i><%= comment.content %></i>
+                    </div>
+                </div>
+              <% end %>
+            <% end %>
+            <div id="comments"></div>
+        </div>
+
+        <!-- Sidebar -->
+        <%= render "shared/sidebar" %>
+    <hr>
+    <!-- Footer -->
+    <%= render "shared/footer" %>
+</div>
+</div>

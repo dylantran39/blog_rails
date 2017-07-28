@@ -1,0 +1,43 @@
+<!-- Blog Sidebar Widgets Column -->
+<div class="col-md-4">
+    <!-- Blog Search Well -->
+    <div class="well">
+        <h4>Blog Search</h4>
+        <div class="input-group">
+          <%= search_form_for @search, url: root_path , class: "form-inline" do |f| %>
+              <div class="form-group">
+                  <%= f.label :title_cont, 'Search posts:' %>
+                  <%= f.text_field :title_cont, class: "form-control" %><br>
+              </div> <!-- Tìm kiếm theo name có chứa ... -->
+              <%= f.submit 'Search', class: "btn btn-default" %>
+          <% end %>
+            </span>
+        </div>
+        <!-- /.input-group -->
+    </div>
+
+    <!-- Blog Categories Well -->
+    <% if @categories.present? %>
+      <div class="well">
+          <h4>Blog Categories</h4>
+          <div class="row">
+              <div class="col-lg-12">
+                  <ul class="list-unstyled">
+                    <% @categories.each do |category| %>
+                      <li><a href="#"><%= category.name %></a>
+                        <p><%= category.description %></p>
+                      </li>
+                    <% end %>
+                  </ul>
+              </div>
+          <!-- /.row -->
+      </div>
+    <% end %>
+
+      <!-- Side Widget Well -->
+      <div class="well">
+        <h4>Side Widget Well</h4>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, perspiciatis adipisci accusamus laudantium odit aliquam repellat tempore quos aspernatur vero.</p>
+      </div>
+  </div>
+</div>

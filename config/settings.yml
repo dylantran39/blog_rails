@@ -1,0 +1,10 @@
+users:
+  avatar_nil: "/assets/avatar_nil.jpeg"
+  size: "50x50"
+  size_ava: "130x130"
+  size_book: "100x100"
+posts:
+  post_nil: "/assets/images_nil.jpeg"
+  size: "200x200"
+  size_details: "300x300"
+  items_per_page: 2

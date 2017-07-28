@@ -1,0 +1,12 @@
+<br>
+<div class="media">
+    <a class="pull-left" href="#">
+        <img class="media-object" src="<%= comment.user.avatar.present? ? comment.user.avatar : Settings.users.avatar_nil %>" alt="">
+    </a>
+    <div class="media-body">
+        <h4 class="media-heading"><%= comment.user.name %>
+            <small><%= time_ago_in_words(comment.created_at) %></small>
+        </h4>
+        <i><%= comment.content %></i>
+    </div>
+</div>

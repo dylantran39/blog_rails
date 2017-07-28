@@ -1,0 +1,43 @@
+<%= render "shared/header" %>
+<!-- Page Content -->
+<div class="container">
+    <div class="row">
+        <!-- Blog Post Content Column -->
+        <div class="col-lg-8">
+            <!-- Blog Post -->
+            <br><br>
+            <% @posts.each do |post| %>
+              <div class="col-md-12">
+                <!-- Title -->
+                <h1><%= link_to post.title, post_path(post) %></h1>
+                <!-- Author -->
+                <p class="lead">
+                    by <a href="#"><%= post.user.name %></a>
+                </p>
+                <p><%= social_share_button_tag(post.title) %></p>
+                <!-- Date/Time -->
+                <p><span class="glyphicon glyphicon-time"></span> Posted on <%= time_ago_in_words(post.created_at) %></p>
+              </div>
+              <div class="col-md-12">
+                <div class="col-md-4">
+                  <!-- Preview Image -->
+                  <a href="<%= post_path(post) %>"> <img class="img-responsive" src="<%= Settings.posts.post_nil %>" alt="image post"></a>
+                </div>
+                <div class="col-md-8">
+                  <!-- Post Content -->
+                  <p class="lead"><%= post.content %></p>
+                </div>
+              </div>
+              <hr>
+            <% end %>
+        </div>
+
+        <!-- Sidebar -->
+        <%= render "shared/sidebar" %>
+
+    <%= paginate @posts, :theme => 'twitter-bootstrap-3', :pagination_class => "pagination-sm" %>
+    <hr>
+    <!-- Footer -->
+    <%= render "shared/footer" %>
+</div>
+</div>
